@@ -5,7 +5,7 @@ var app = express();
 
 // '/' est la route racine
 app.get('/', function (req, res) {
-  res.send('Bonjour !');
+  res.send('Bonjour Tout le monde!');
 });
 
 app.listen(4000, function () {
