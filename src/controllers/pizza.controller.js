@@ -1,22 +1,18 @@
-const User = require('../models/user.model');
-const bcrypt = require("bcrypt");
+const Pizza = require('../models/pizza.model');
 
 exports.create = (req, res) => {
     // req valeur qu'on recupere res resultat
-    let hashedpassword = bcrypt.hashSync(req.body.password, 8);
-    const user = new User({
-      email: req.body.email,
-      password: hashedpassword,
-      firstname: req.body.firstname,
-      lastname: req.body.firstname,
-      age: req.body.age,
-      admin: req.body.admin
+    const pizza = new Pizza({
+      name: req.body.name,
+      price: req.body.price,
+      size: req.body.size,
+      topping: req.body.topping
     });
   
     /*if (err) {
       res.send(err);
     } else {*/
-    user
+      pizza
       .save()
       .then(data => {
         res.send(data);
@@ -30,60 +26,60 @@ exports.create = (req, res) => {
 
   exports.findAll = (req, res) => {
     User.find()
-      .then(users => {
-        res.send(users);
+      .then(pizzas => {
+        res.send(pizzas);
       })
       .catch(err => {
         res.status(500).send({
-          message: err.message || "Une erreur s'est produite pendant la recherche des utilisateurs"
+          message: err.message || "Une erreur s'est produite pendant la recherche des pizzas"
         });
       });
   };
 
   exports.findById = (req, res) => {
     User.findById(req.params.id)
-      .then(user => {
-        res.send(user);
+      .then(pizza => {
+        res.send(pizza);
       })
       .catch(err => {
         res.status(500).send({
-          message: err.message || "Une erreur s'est produite pendant la recherche de l'utilisateur"
+          message: err.message || "Une erreur s'est produite pendant la recherche de la pizza"
         });
       });
   };
 
   exports.findByIdAndUpdate = (req, res) => {
     User.findOneAndUpdate(req.params.id, req.body)
-      .then(user => {
-        res.send(user);
+      .then(pizza => {
+        res.send(pizza);
       })
       .catch(err => {
         res.status(500).send({
-          message: err.message || "Impossible de mettre à jour l'utilisateur"
+          message: err.message || "Impossible de mettre à jour la pizza"
         });
       });
   };
 
   exports.findByIdAndRemove= (req, res) => {
     User.findByIdAndRemove(req.params.id)
-      .then(user => {
-        res.send(user);
+      .then(pizza => {
+        res.send(pizza);
       })
       .catch(err => {
         res.status(500).send({
-          message: err.message || "Impossible de supprimer l'utilisateur"
+          message: err.message || "Impossible de supprimer la pizza"
         });
       });
   };
 
   exports.removeALL= (req, res) => {
     User.remove()
-      .then(users => {
-        res.send(user);
+      .then(pizzas => {
+        res.send(pizza);
       })
       .catch(err => {
         res.status(500).send({
-          message: err.message || "Impossible de supprimer tous les utilisateurs"
+          message: err.message || "Impossible de supprimer tous les pizzas"
         });
       });
   };
