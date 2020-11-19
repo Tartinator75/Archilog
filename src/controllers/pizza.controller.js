@@ -25,7 +25,7 @@ exports.create = (req, res) => {
   };
 
   exports.findAll = (req, res) => {
-    User.find()
+    Pizza.find()
       .then(pizzas => {
         res.send(pizzas);
       })
@@ -37,7 +37,7 @@ exports.create = (req, res) => {
   };
 
   exports.findById = (req, res) => {
-    User.findById(req.params.id)
+    Pizza.findById(req.params.id)
       .then(pizza => {
         res.send(pizza);
       })
@@ -49,7 +49,7 @@ exports.create = (req, res) => {
   };
 
   exports.findByIdAndUpdate = (req, res) => {
-    User.findOneAndUpdate(req.params.id, req.body)
+    Pizza.findOneAndUpdate(req.params.id, req.body)
       .then(pizza => {
         res.send(pizza);
       })
@@ -61,7 +61,7 @@ exports.create = (req, res) => {
   };
 
   exports.findByIdAndRemove= (req, res) => {
-    User.findByIdAndRemove(req.params.id)
+    Pizza.findByIdAndRemove(req.params.id)
       .then(pizza => {
         res.send(pizza);
       })
@@ -73,7 +73,7 @@ exports.create = (req, res) => {
   };
 
   exports.removeALL= (req, res) => {
-    User.remove()
+    Pizza.remove()
       .then(pizzas => {
         res.send(pizza);
       })
