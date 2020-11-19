@@ -1,12 +1,12 @@
 
 const server = require('../configs/server.configs');
 const bodyParser =  require('body-parser');
-const userRoute = require('../routes/user.routes.js');
+const apiRoute = require('../routes');
 const express = require('express');
 
 const app = express()
 app.use(bodyParser.json());
-app.use('/api/v1', userRoute);
+app.use('/api/v1', apiRoute);
 
 exports.start= () =>{
     port = server.port;
