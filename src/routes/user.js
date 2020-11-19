@@ -1,29 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user.model');
+const userController = require ('../controllers/user.controller.js');
 
-router.get('/', (req, res) => {
-    res.send("We are on user")    
-});
+//GET api/user
+router.get("/api/user", userController.findAll);
 
-router.post('/', (req,res) => {
-    console.log(req.body);
-    const user = new User ({
-        email: req.body.email,
-        password: req.body.password,
-        lastname: req.body.lastname,
-        firstname: req.body.firstname,
-        age: req.body.age,
-        admin: req.body.admin
-    });
+//GET api/user/:id
+router.get("/api/user/:id", userController.findById);
 
-    user.save()
-    .then(data=>{
-        res.json(data);
-    })
-    .catch(err => {
-        res.json({ message: err});
-    })
-});
+//POST api/user
+router.post("/api/user", userController.create);
+
+//UPDATE api/user/:id
+router.post("/api/user/:id", userController.findByIdAndUpdate);
+
+//DELETE api/user/:id
+router.delete("/api/user/:id", userController.findByIdAndRemove);
+
+//DELETE api/user
+router.delete("/api/user", userController.removeALL);
 
 module.exports = router;
