@@ -7,7 +7,15 @@ exports.connect = () => {
     url = dbConfigs.url
     mongoose.connect(
         url,
-        { useNewUrlParser: true }, 
-        ()=>console.log("connecté à la base de donnée")
-    );
+        { 
+            useNewUrlParser: true 
+        }).then(
+            ()=>{
+                console.log("connecté à la base de donnée")
+            }).catch(
+                err =>{
+                    console.log("impossible de se connecter à la base", err);
+                }
+            )
+        
 }
