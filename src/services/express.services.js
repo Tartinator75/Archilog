@@ -1,4 +1,3 @@
-
 const server = require('../configs/server.configs');
 const bodyParser =  require('body-parser');
 const userRoute = require('../routes/user.routes.js');
