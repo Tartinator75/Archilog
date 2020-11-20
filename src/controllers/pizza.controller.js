@@ -37,17 +37,38 @@ exports.create = async (req, res) => {
     return await Generic.findByIdgeneric(Pizza, res);
   };
 
-  exports.findByIdAndUpdate = async (req, res) => {
-    let Generic = new BaseGeneric();
-    return await Generic.findByIdAndUpdategeneric(Pizza, res);
+  exports.findByIdAndUpdate = (req, res) => {
+    Pizza.findOneAndUpdate(req.params.id, req.body)
+      .then(pizza => {
+        res.send(pizza);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: err.message || "Impossible de mettre à jour la pizza"
+        });
+      });
   };
 
-  exports.findByIdAndRemove= async (req, res) => {
-    let Generic = new BaseGeneric();
-    return await Generic.findByIdAndRemovegeneric(Pizza, res);
+  exports.findByIdAndRemove= (req, res) => {
+    Pizza.findByIdAndRemove(req.params.id)
+      .then(pizza => {
+        res.send(pizza);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: err.message || "Impossible de supprimer la pizza"
+        });
+      });
   };
 
-  exports.removeALL= async (req, res) => {
-    let Generic = new BaseGeneric();
-    return await Generic.removeALLgeneric(Pizza, res);
+  exports.removeALL= (req, res) => {
+    Pizza.remove()
+      .then(pizzas => {
+        res.send(pizza);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: err.message || "Impossible de supprimer tous les pizzas"
+        });
+      });
   };
