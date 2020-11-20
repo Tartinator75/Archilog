@@ -1,4 +1,5 @@
 const Pizza = require('../models/pizza.model');
+const BaseGeneric = require('./genericbase.controller');
 
 exports.create = async (req, res) => {
   const pizza = new Pizza({
@@ -7,24 +8,16 @@ exports.create = async (req, res) => {
     size: req.body.size,
     topping: req.body.topping
   });
-
-  return await createGeneric(pizza);
-  return await createGeneric(Pizza, req);
+  let Generic = new BaseGeneric(pizza,res);
+   return await Generic.creategeneric(Generic.generic, Generic.res);
+  // return await createGeneric(pizza);
+  // return await createGeneric(Pizza, req);
     // req valeur qu'on recupere res resultat
   
     /*if (err) {
       res.send(err);
     } else {*/
-      pizza
-      .save()
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: err.message
-        });
-      });
+    
   };
 
   exports.findAll = (req, res) => {
