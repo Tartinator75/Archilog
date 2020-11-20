@@ -29,6 +29,17 @@ let Generic = class BaseGeneric{
             message: err.message || "Une erreur s'est produite pendant la recherche des pizzas"
           });
         });
+    }
+    findByIdgeneric = (generic, res) => {
+      generic.find()
+        .then(data => {
+          res.send(data);
+        })
+        .catch(err => {
+          res.status(500).send({
+            message: err.message || "Une erreur s'est produite pendant la recherche des pizzas"
+          });
+        });
     };
 }
 module.exports = Generic;
