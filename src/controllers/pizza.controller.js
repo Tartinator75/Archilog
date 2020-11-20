@@ -1,13 +1,16 @@
 const Pizza = require('../models/pizza.model');
 
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
+  const pizza = new Pizza({
+    name: req.body.name,
+    price: req.body.price,
+    size: req.body.size,
+    topping: req.body.topping
+  });
+
+  return await createGeneric(pizza);
+  return await createGeneric(Pizza, req);
     // req valeur qu'on recupere res resultat
-    const pizza = new Pizza({
-      name: req.body.name,
-      price: req.body.price,
-      size: req.body.size,
-      topping: req.body.topping
-    });
   
     /*if (err) {
       res.send(err);
