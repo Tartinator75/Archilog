@@ -2,22 +2,22 @@ const express = require('express');
 const router = express.Router();
 const pizzaController = require ('../controllers/pizza.controller.js');
 
-//GET api/user
+//GET api/pizza
 router.get("/pizza", pizzaController.findAll);
 
-//GET api/user/:id
+//GET api/pizza/:id
 router.get("/pizza/:id", pizzaController.findById);
 
-//POST api/user
+//POST api/pizza
 router.post("/pizza", pizzaController.create);
 
-//UPDATE api/user/:id
+//UPDATE api/pizza/:id
 router.put("/pizza/:id", pizzaController.findByIdAndUpdate);
 
-//DELETE api/user/:id
+//DELETE api/pizza/:id
 router.delete("/pizza/:id", pizzaController.findByIdAndRemove);
 
-//DELETE api/user
+//DELETE api/pizza
 router.delete("/pizza", pizzaController.removeALL);
 
 module.exports = router;
