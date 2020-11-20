@@ -28,16 +28,9 @@ exports.create = async (req, res) => {
       });
   };
 
-  exports.findById = (req, res) => {
-    Pizza.findById(req.params.id)
-      .then(pizza => {
-        res.send(pizza);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: err.message || "Une erreur s'est produite pendant la recherche de la pizza"
-        });
-      });
+  exports.findById = async (req, res) => {
+    let Generic = new BaseGeneric();
+    return await Generic.findByIdgeneric(Pizza, res);
   };
 
   exports.findByIdAndUpdate = (req, res) => {
