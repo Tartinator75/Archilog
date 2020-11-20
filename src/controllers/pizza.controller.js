@@ -16,16 +16,9 @@ exports.create = async (req, res) => {
     
   };
 
-  exports.findAll = (req, res) => {
-    Pizza.find()
-      .then(pizzas => {
-        res.send(pizzas);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: err.message || "Une erreur s'est produite pendant la recherche des pizzas"
-        });
-      });
+  exports.findAll = async (req, res) => {
+    let Generic = new BaseGeneric();
+    return await Generic.findAllgeneric(Pizza, res);
   };
 
   exports.findById = async (req, res) => {

@@ -19,17 +19,16 @@ let Generic = class BaseGeneric{
           });
         });
     }
-    creategeneric =  (generic, res) =>{
-        generic
-        .save()
+    findAllgeneric = (generic, res) => {
+      generic.find()
         .then(data => {
           res.send(data);
         })
         .catch(err => {
           res.status(500).send({
-            message: err.message
+            message: err.message || "Une erreur s'est produite pendant la recherche des pizzas"
           });
         });
-    }
+    };
 }
 module.exports = Generic;
