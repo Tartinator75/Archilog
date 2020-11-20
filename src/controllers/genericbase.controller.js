@@ -1,11 +1,14 @@
 let Generic = class BaseGeneric{
     
-    constructor(generic, res){
-        this.generic = generic;
-        this.res = res;
+    constructor(){
     }
-    creategeneric =  (generic, res) =>{
-        generic
+    creategeneric =  (generic,req, res) =>{
+        
+        for (const [key, value] of Object.entries(req.body)) {
+            generic[key] = value;
+          }
+
+       generic
         .save()
         .then(data => {
           res.send(data);
