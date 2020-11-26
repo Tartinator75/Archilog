@@ -30,8 +30,9 @@ let Generic = class BaseGeneric{
           });
         });
     }
-    findByIdgeneric = (generic, res) => {
-      generic.findById()
+    findByIdgeneric = async (generic,req, res) => {
+      
+      generic.findById(req.params.id)
         .then(data => {
           res.send(data);
         })

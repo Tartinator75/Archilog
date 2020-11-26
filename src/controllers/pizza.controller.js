@@ -16,7 +16,7 @@ exports.create = async (req, res) => {
 
   exports.findById = async (req, res) => {
     let Generic = new BaseGeneric();
-    return await Generic.findByIdgeneric(Pizza, res);
+    return await Generic.findByIdgeneric(Pizza,req, res);
   };
 
   exports.findByIdAndUpdate = (req, res) => {
@@ -33,7 +33,7 @@ exports.create = async (req, res) => {
 
   exports.findByIdAndRemove= (req, res) => {
     let Generic = new BaseGeneric();
-    return await Generic.findByIdAndRemovegeneric(Pizza, res);
+    return Generic.findByIdAndRemovegeneric(Pizza, req, res);
   };
 
   exports.removeALL= (req, res) => {
