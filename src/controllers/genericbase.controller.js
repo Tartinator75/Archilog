@@ -41,5 +41,17 @@ let Generic = class BaseGeneric{
           });
         });
     };
+    removeAllGeneric  = (generic, res)  => {
+        generic.remove()
+      .then(generic => {
+        res.send(generic);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: err.message || "Impossible de supprimer tous les pizzas"
+        });
+      });
+    }
+
 }
 module.exports = Generic;

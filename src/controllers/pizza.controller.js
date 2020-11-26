@@ -6,14 +6,7 @@ exports.create = async (req, res) => {
 
   Generic = new BaseGeneric;
    return await Generic.creategeneric(new Pizza() ,req, res);
-  // return await createGeneric(pizza);
-  // return await createGeneric(Pizza, req);
-    // req valeur qu'on recupere res resultat
-  
-    /*if (err) {
-      res.send(err);
-    } else {*/
-    
+ 
   };
 
   exports.findAll = async (req, res) => {
@@ -51,13 +44,9 @@ exports.create = async (req, res) => {
   };
 
   exports.removeALL= (req, res) => {
-    Pizza.remove()
-      .then(pizzas => {
-        res.send(pizza);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: err.message || "Impossible de supprimer tous les pizzas"
-        });
-      });
+
+    let Generic = new BaseGeneric();
+
+    return Generic.removeAllGeneric(Pizza, res);
+    
   };
