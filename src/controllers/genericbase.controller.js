@@ -42,7 +42,18 @@ let Generic = class BaseGeneric{
           });
         });
     };
-    findByIdAndRemovegeneric = (generic,req, res) => {
+    findByIdAndUpdate = (generic, req, res) => {
+      generic.findOneAndUpdate(req.params.id, req.body)
+        .then(data => {
+          res.send(data);
+        })
+        .catch(err => {
+          res.status(500).send({
+            message: err.message || "Une erreur s'est produite pendant la recherche de la pizza"
+          });
+        });
+    };
+    findByIdAndRemovegeneric = (generic, req, res) => {
       generic.findByIdAndRemove(req.params.id)
         .then(data => {
           res.send(data);

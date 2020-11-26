@@ -19,16 +19,9 @@ exports.create = async (req, res) => {
     return await Generic.findByIdgeneric(Pizza,req, res);
   };
 
-  exports.findByIdAndUpdate = (req, res) => {
-    Pizza.findOneAndUpdate(req.params.id, req.body)
-      .then(pizza => {
-        res.send(pizza);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: err.message || "Impossible de mettre à jour la pizza"
-        });
-      });
+  exports.findByIdAndUpdate = async (req, res) => {
+    let Generic = new BaseGeneric();
+    return await Generic.findByIdAndUpdate(Pizza,req, res);
   };
 
   exports.findByIdAndRemove= (req, res) => {
