@@ -32,15 +32,8 @@ exports.create = async (req, res) => {
   };
 
   exports.findByIdAndRemove= (req, res) => {
-    Pizza.findByIdAndRemove(req.params.id)
-      .then(pizza => {
-        res.send(pizza);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: err.message || "Impossible de supprimer la pizza"
-        });
-      });
+    let Generic = new BaseGeneric();
+    return await Generic.findByIdAndRemovegeneric(Pizza, res);
   };
 
   exports.removeALL= (req, res) => {

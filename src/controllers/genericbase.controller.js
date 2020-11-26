@@ -31,13 +31,24 @@ let Generic = class BaseGeneric{
         });
     }
     findByIdgeneric = (generic, res) => {
-      generic.find()
+      generic.findById()
         .then(data => {
           res.send(data);
         })
         .catch(err => {
           res.status(500).send({
-            message: err.message || "Une erreur s'est produite pendant la recherche des pizzas"
+            message: err.message || "Une erreur s'est produite pendant la recherche de la pizza"
+          });
+        });
+    };
+    findByIdAndRemovegeneric = (generic, res) => {
+      generic.findByIdAndRemove()
+        .then(data => {
+          res.send(data);
+        })
+        .catch(err => {
+          res.status(500).send({
+            message: err.message || "Impossible de supprimer la pizza"
           });
         });
     };
