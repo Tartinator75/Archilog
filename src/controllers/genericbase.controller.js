@@ -42,8 +42,8 @@ let Generic = class BaseGeneric{
           });
         });
     };
-    findByIdAndRemovegeneric = (generic, res) => {
-      generic.findByIdAndRemove()
+    findByIdAndRemovegeneric = (generic,req, res) => {
+      generic.findByIdAndRemove(req.params.id)
         .then(data => {
           res.send(data);
         })
