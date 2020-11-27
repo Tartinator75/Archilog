@@ -19,9 +19,28 @@ let Generic = class BaseGeneric{
           });
         });
     }
-    findAllgeneric = (generic, res) => {
+    findAllgeneric = async (generic,req, res) => {
+      
+      let notJson = req.query.notJson;
+      if(notJson.includes('name')){
+        console.log('yes');
+      }
+      else{
+        console.log('no');
+      }
       generic.find()
         .then(data => {
+          for (const [key, value] of Object.entries(data)) {
+            for (const [index, val] of Object.entries(value)) {
+              for (const [indexs, va] of Object.entries(notJson)) {
+                if(data[key]['_doc'].hasOwnProperty(va)){
+                  delete value['_doc'][va]
+                }
+                
+              }
+            }
+          }
+          console.log(data);
           res.send(data);
         })
         .catch(err => {
