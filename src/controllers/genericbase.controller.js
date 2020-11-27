@@ -75,6 +75,5 @@ let Generic = class BaseGeneric{
         });
       });
     }
-
 }
 module.exports = Generic;
