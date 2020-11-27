@@ -11,7 +11,7 @@ exports.create = async (req, res) => {
 
   exports.findAll = async (req, res) => {
     let Generic = new BaseGeneric();
-    return await Generic.findAllgeneric(Pizza, res);
+    return await Generic.findAllgeneric(Pizza,req, res);
   };
 
   exports.findById = async (req, res) => {
