@@ -21,7 +21,7 @@ exports.create = async (req, res) => {
 
   exports.findByIdAndUpdate = async (req, res) => {
     let Generic = new BaseGeneric();
-    return await Generic.findByIdAndUpdate(Pizza,req, res);
+    return await Generic.findByIdAndUpdategeneric(Pizza,req, res);
   };
 
   exports.findByIdAndRemove= (req, res) => {
