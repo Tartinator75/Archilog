@@ -21,26 +21,46 @@ let Generic = class BaseGeneric{
     }
     findAllgeneric = async (generic,req, res) => {
       
-      let notJson = req.query.notJson;
-      if(notJson.includes('name')){
-        console.log('yes');
-      }
-      else{
-        console.log('no');
-      }
+
+
       generic.find()
         .then(data => {
-          for (const [key, value] of Object.entries(data)) {
-            for (const [index, val] of Object.entries(value)) {
-              for (const [indexs, va] of Object.entries(notJson)) {
-                if(data[key]['_doc'].hasOwnProperty(va)){
-                  delete value['_doc'][va]
+
+          // Traitement du notJson
+          if(req.query.notJson != undefined){
+            let notJson = req.query.notJson;
+            for (const [key, value] of Object.entries(data)) {
+              for (const [index, val] of Object.entries(value)) {
+                for (const [indexs, va] of Object.entries(notJson)) {
+                  if(data[key]['_doc'].hasOwnProperty(va)){
+                    delete value['_doc'][va]
+                  } 
                 }
-                
               }
             }
           }
-          console.log(data);
+          // Traitement du rating
+          if(req.query.rating != undefined){
+            let ratingSort = req.query.rating;
+            if(ratingSort.length == 1 ){
+              ratingSort = ratingSort -1;
+              data = data[ratingSort];
+            }
+            else{
+              if(ratingSort.indexOf("[") == -1 && ratingSort.indexOf("]") == -1){
+                let filterByIndex = ratingSort.split(',');
+                let newData = [];
+                filterByIndex.forEach(element => {
+                  element = element -1;
+                  newData.push(data[element]);
+                });
+                data = newData;
+              }
+              else if(ratingSort.indexOf("[") != -1 && ratingSort.indexOf("]") != -1){
+                console.log('contient des parenthèse');
+              }
+            }
+          }
           res.send(data);
         })
         .catch(err => {
