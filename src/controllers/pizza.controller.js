@@ -9,7 +9,7 @@ exports.create = async (req, res) => {
  
   };
 
-  exports.findAll = async (req, res) => {
+  exports.findAll = async (req, res, next) => {
     let Generic = new BaseGeneric();
         const {page =1,limit =5} = req.query;
         const pizza = await Pizza.find()
