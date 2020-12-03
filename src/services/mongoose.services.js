@@ -8,7 +8,8 @@ exports.connect = () => {
     mongoose.connect(
         url,
         { 
-            useNewUrlParser: true 
+            useNewUrlParser: true,
+            useUnifiedTopology: true
         }).then(
             ()=>{
                 console.log("connecté à la base de donnée")

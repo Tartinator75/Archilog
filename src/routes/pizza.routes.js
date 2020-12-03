@@ -20,4 +20,5 @@ router.delete("/pizza/:id", pizzaController.findByIdAndRemove);
 //DELETE api/pizza
 router.delete("/pizza", pizzaController.removeALL);
 
+
 module.exports = router;

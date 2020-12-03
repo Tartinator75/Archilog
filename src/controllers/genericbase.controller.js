@@ -1,3 +1,5 @@
+const { query } = require('express');
+
 let Generic = class BaseGeneric{
     
     constructor(){
@@ -20,6 +22,68 @@ let Generic = class BaseGeneric{
         });
     }
     findAllgeneric = async (generic,req, res) => {
+      // Pagination
+
+      // const { page = 1, limit = 10 } = req.query;
+
+      // try {
+      //   const pizza = await Pizza.find()
+      //     .limit(limit * 1)
+      //     .skip((page - 1) * limit)
+      //     .exec();
+
+      //   const count = await Pizza.countDocuments();
+
+      //   res.json({
+      //     pizza,
+      //     totalPages: Math.ceil(count / limit),
+      //     currentPage: page
+      //   });
+      // } catch (err) {
+      //   console.error(err.message);
+      // }
+
+      // const getPagination = (page, range) => {
+      //   const limit = range ? +range : 3;
+      //   const offset = page ? page * limit : 0;
+      
+      //   return { limit, offset };
+      // };
+
+      // const page = parseInt(req.query.page)
+      // const limit = parseInt(req.query.limit)
+
+      // const startIndex = (page - 1) * limit
+      // const endIndex = page * limit
+
+      // const results = {}
+
+      // if (endIndex < pizza.length) {
+      //   results.next = {
+      //     page: page + 1,
+      //     limit: limit
+      //   }
+      // }
+      
+      // if (startIndex > 0) {
+      //   results.previous = {
+      //     page: page - 1,
+      //     limit: limit
+      //   }
+      // }
+
+      // results.results = pizza.slice(startIndex, endIndex)
+      // res.json(results)
+    
+      // try {
+      //   results.results = await findAllgeneric.find().limit(limit).skip(startIndex).exec()
+      //   res.paginatedResults = results
+      //   next()
+      // } catch (e) {
+      //   res.status(500).json({ message: e.message })
+      // }
+
+
      // Traitement du Tri
       if(req.query.desc){
         req.query.desc = '-' + req.query.desc
