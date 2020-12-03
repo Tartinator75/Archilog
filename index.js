@@ -19,7 +19,7 @@ mongoose.connect();
 
  /**
  * @swagger
- * /api/pizza/:id:
+ * /api/v1/pizza/:id:
  *  get:
  *    description: Use to request pizza by id
  *    responses:
@@ -40,7 +40,7 @@ mongoose.connect();
 
  /**
  * @swagger
- * /api/pizza/:id:
+ * /api/v1/pizza/:id:
  *   put:
  *     description: update Pizza
  *   
@@ -51,7 +51,7 @@ mongoose.connect();
 
  /**
  * @swagger
- * /api/pizza/:id:
+ * /api/v1/pizza/:id:
  *   delete:
  *     description: delete Pizza
  *   
@@ -62,7 +62,7 @@ mongoose.connect();
 
  /**
  * @swagger
- * /api/pizza:
+ * /api/v1/pizza:
  *   delete:
  *     description: delete all Pizza
  *   
@@ -73,7 +73,7 @@ mongoose.connect();
 
  /**
  * @swagger
- * /api/pizza/search:
+ * /api/v1/pizza/search:
  *  get:
  *    description: Use to request pizza by search
  *    responses:

@@ -4,13 +4,13 @@ const apiRoute = require('../routes');
 const express = require('express');
 const swagger = require('../routes/swagger')
 const swaggerJsDoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
+const swaggerUI = require("swagger-ui-express");
 const swaggerDocs = swaggerJsDoc(swagger);
 
 const app = express()
 app.use(bodyParser.json());
 app.use('/api/v1', apiRoute);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 exports.start= () =>{
     port = server.port;
