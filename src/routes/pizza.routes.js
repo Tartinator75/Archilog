@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const pizzaController = require ('../controllers/pizza.controller.js');
 
+// Routes
+/**
+ * @swagger
+ * /api/v1/pizza:
+ *  get:
+ *    description: Use to request all customers
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
 //GET api/pizza
 router.get("/pizza", pizzaController.findAll);
 

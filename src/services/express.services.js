@@ -2,10 +2,15 @@ const server = require('../configs/server.configs');
 const bodyParser =  require('body-parser');
 const apiRoute = require('../routes');
 const express = require('express');
+const swagger = require('../routes/swagger')
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocs = swaggerJsDoc(swagger);
 
 const app = express()
 app.use(bodyParser.json());
 app.use('/api/v1', apiRoute);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 exports.start= () =>{
     port = server.port;
@@ -16,4 +21,5 @@ exports.start= () =>{
         }
       console.log(`Application d'exemple écoutant sur le port ${port}!`);
     });
+
 }
