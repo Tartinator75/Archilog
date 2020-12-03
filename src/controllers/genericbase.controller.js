@@ -1,5 +1,6 @@
-let Generic = class BaseGeneric{
+const moment = require('moment');
     
+let Generic = class BaseGeneric{
     constructor(){
     }
     creategeneric =  (generic,req, res) =>{
@@ -72,14 +73,15 @@ let Generic = class BaseGeneric{
                 }
                 
                 if(dateSplit[2].length > 2){
-                  var date= new Date(dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0]);
+                  var date= moment(dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0]);
                 }
                 else if(dateSplit[2].length = 2 && dateSplit[0].length == 4){
-                  var date = new Date(value)
+                  var date = moment(value)
                 }
                 for (const [elemGeneric, attributs] of Object.entries(data)) {
                   if(data[elemGeneric][key] != undefined){
-                    let dateObj = data[elemGeneric][key]
+                    let dateObj = moment(data[elemGeneric][key])
+                    console.log(date, date)
                     console.log(data[elemGeneric][key] + " vs " + date);
                     if(dateObj == date){
                       console.log("egalité")
@@ -142,7 +144,10 @@ let Generic = class BaseGeneric{
                 }
               }
             }
-            data = newData;
+            if(newData.length> 0){
+
+              data = newData;
+            }
            
           }
           
