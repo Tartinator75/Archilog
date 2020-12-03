@@ -201,5 +201,31 @@ let Generic = class BaseGeneric{
         });
       });
     }
+    findSearchgeneric = async (generic,req, res) => {
+      for (const key in req.query) {
+        
+        if(req.query.sort){
+          generic.find({[key]:{$regex: req.query[key], $options: '$i'}}).sort(req.query.sort)
+          .then(data => {   
+            res.send(data);
+          }).catch(() => {
+            process.on('unhandledRejection', error => {
+              console.log('unhandledRejection', error);
+            });
+          });
+        }
+        else{
+          generic.find({[key]:{$regex: req.query[key], $options: '$i'}})
+          .then(data => {   
+            res.send(data);
+          }).catch(err => {
+            res.status(500).send({
+              message: err.message || "Une erreur s'est produite pendant la recherche de la pizza"
+            });
+          });
+          
+        }
+      }
+    }
 }
 module.exports = Generic;

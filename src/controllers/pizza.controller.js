@@ -41,3 +41,7 @@ exports.create = async (req, res) => {
     return Generic.removeAllGeneric(Pizza, res);
     
   };
+  exports.findSearch = async (req, res) => {
+    let Generic = new BaseGeneric();
+    return await Generic.findSearchgeneric(Pizza, req, res);
+  };
