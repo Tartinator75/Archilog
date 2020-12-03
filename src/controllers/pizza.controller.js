@@ -11,11 +11,11 @@ exports.create = async (req, res) => {
 
   exports.findAll = async (req, res, next) => {
     let Generic = new BaseGeneric();
-    //     const {page =1,limit =5} = req.query;
-    //     const pizza = await Pizza.find()
-    //       .limit(limit * 1)
-    //       .skip((page - 1) * limit);
-    //     res.status(200).json({ total: pizza.length, pizza });
+        // const {page =1,limit =5} = req.query;
+        // const pizza = await Pizza.find()
+        //   .limit(limit * 1)
+        //   .skip((page - 1) * limit);
+        // res.status(200).json({ total: pizza.length, pizza });
     return await Generic.findAllgeneric(Pizza, req, res);
   };
 

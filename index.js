@@ -3,6 +3,7 @@ const app = require('./src/services/express.services');
 
 app.start();
 mongoose.connect();
+<<<<<<< HEAD
 
 
 // Swagger Doc
@@ -80,3 +81,5 @@ mongoose.connect();
  *      '200':
  *        description: A successful response
  */
+=======
+>>>>>>> 22d314efe6555d5d56d9d770efcc413a7885fe60

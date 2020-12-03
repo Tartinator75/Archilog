@@ -1,5 +1,9 @@
-let Generic = class BaseGeneric{
+const moment = require('moment');
+const { query } = require('express');
+
+
     
+let Generic = class BaseGeneric{
     constructor(){
     }
     creategeneric =  (generic,req, res) =>{
@@ -21,6 +25,68 @@ let Generic = class BaseGeneric{
         });
     }
     findAllgeneric = async (generic,req, res) => {
+      // Pagination
+
+      // const { page = 1, limit = 10 } = req.query;
+
+      // try {
+      //   const pizza = await Pizza.find()
+      //     .limit(limit * 1)
+      //     .skip((page - 1) * limit)
+      //     .exec();
+
+      //   const count = await Pizza.countDocuments();
+
+      //   res.json({
+      //     pizza,
+      //     totalPages: Math.ceil(count / limit),
+      //     currentPage: page
+      //   });
+      // } catch (err) {
+      //   console.error(err.message);
+      // }
+
+      // const getPagination = (page, range) => {
+      //   const limit = range ? +range : 3;
+      //   const offset = page ? page * limit : 0;
+      
+      //   return { limit, offset };
+      // };
+
+      // const page = parseInt(req.query.page)
+      // const limit = parseInt(req.query.limit)
+
+      // const startIndex = (page - 1) * limit
+      // const endIndex = page * limit
+
+      // const results = {}
+
+      // if (endIndex < pizza.length) {
+      //   results.next = {
+      //     page: page + 1,
+      //     limit: limit
+      //   }
+      // }
+      
+      // if (startIndex > 0) {
+      //   results.previous = {
+      //     page: page - 1,
+      //     limit: limit
+      //   }
+      // }
+
+      // results.results = pizza.slice(startIndex, endIndex)
+      // res.json(results)
+    
+      // try {
+      //   results.results = await findAllgeneric.find().limit(limit).skip(startIndex).exec()
+      //   res.paginatedResults = results
+      //   next()
+      // } catch (e) {
+      //   res.status(500).json({ message: e.message })
+      // }
+
+
      // Traitement du Tri
       if(req.query.desc){
         req.query.desc = '-' + req.query.desc
@@ -72,14 +138,15 @@ let Generic = class BaseGeneric{
                 }
                 
                 if(dateSplit[2].length > 2){
-                  var date= new Date(dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0]);
+                  var date= moment(dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0]);
                 }
                 else if(dateSplit[2].length = 2 && dateSplit[0].length == 4){
-                  var date = new Date(value)
+                  var date = moment(value)
                 }
                 for (const [elemGeneric, attributs] of Object.entries(data)) {
                   if(data[elemGeneric][key] != undefined){
-                    let dateObj = data[elemGeneric][key]
+                    let dateObj = moment(data[elemGeneric][key])
+                    console.log(date, date)
                     console.log(data[elemGeneric][key] + " vs " + date);
                     if(dateObj == date){
                       console.log("egalité")
@@ -142,7 +209,10 @@ let Generic = class BaseGeneric{
                 }
               }
             }
-            data = newData;
+            if(newData.length> 0){
+
+              data = newData;
+            }
            
           }
           
