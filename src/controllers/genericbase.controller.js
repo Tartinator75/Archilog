@@ -21,12 +21,29 @@ let Generic = class BaseGeneric{
         });
     }
     findAllgeneric = async (generic,req, res) => {
-      
+     // Traitement du Tri
+      if(req.query.desc){
+        req.query.desc = '-' + req.query.desc
 
+        generic.find().sort(req.query.desc)
+        .then(data => {   
+          res.send(data); 
+        })
+      }
+      else if(req.query.asc){
+        req.query.asc = '' + req.query.asc
 
+        generic.find().sort(req.query.asc)
+        .then(data => {   
+          res.send(data); 
+        })
+      }
+     
+      else{
       generic.find()
         .then(data => {
           let newData = [];
+
           // Traitement du notJson
           if(req.query.notJson != undefined){
             let notJson = req.query.notJson;
@@ -35,6 +52,7 @@ let Generic = class BaseGeneric{
                 for (const [indexs, va] of Object.entries(notJson)) {
                   if(data[key]['_doc'].hasOwnProperty(va)){
                     delete value['_doc'][va]
+                   
                   } 
                 }
               }
@@ -127,13 +145,16 @@ let Generic = class BaseGeneric{
             data = newData;
            
           }
+          
           res.send(data);
+          
         })
         .catch(err => {
           res.status(500).send({
             message: err.message || "Une erreur s'est produite pendant la recherche des pizzas"
           });
         });
+      }
     }
     findByIdgeneric = async (generic,req, res) => {
       
@@ -147,8 +168,8 @@ let Generic = class BaseGeneric{
           });
         });
     };
-    findByIdAndUpdate = (generic, req, res) => {
-      generic.findOneAndUpdate(req.params.id, req.body)
+    findByIdAndUpdategeneric = (generic, req, res) => {
+      generic.findByIdAndUpdate(req.params.id, req.body)
         .then(data => {
           res.send(data);
         })
