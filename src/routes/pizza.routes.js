@@ -5,6 +5,9 @@ const pizzaController = require ('../controllers/pizza.controller.js');
 //GET api/pizza
 router.get("/pizza", pizzaController.findAll);
 
+//GET api/pizza/search
+router.get("/pizza/search", pizzaController.findSearch);
+
 //GET api/pizza/:id
 router.get("/pizza/:id", pizzaController.findById);
 
